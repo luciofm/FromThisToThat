@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v6">
+<meta name="syntax" content="java">
+<meta name="settings" content="no_pre">
+</head>
+<body bgcolor="#000000" text="#ffffff">
+<font face="monospace">
+&nbsp;&nbsp;checkMark.animate().alpha(<font color="#ffff00">0f</font>);<br>
+&nbsp;&nbsp;bounds =&nbsp;<font color="#ffff00">new</font>&nbsp;TransitionSet();<br>
+&nbsp;&nbsp;bounds.setOrdering(TransitionSet.ORDERING_TOGETHER);<br>
+&nbsp;&nbsp;bounds.addTransition(<font color="#ffff00">new</font>&nbsp;ChangeImageTransform())<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.addTransition(<font color="#ffff00">new</font>&nbsp;ChangeBounds());;<br>
+&nbsp;&nbsp;set =&nbsp;<font color="#ffff00">new</font>&nbsp;TransitionSet();<br>
+&nbsp;&nbsp;set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);<br>
+&nbsp;&nbsp;set.addTransition(bounds).addTransition(<font color="#ffff00">new</font>&nbsp;Slide(Gravity.BOTTOM));<br>
+&nbsp;&nbsp;set.excludeTarget(R.id.checkMark,&nbsp;<font color="#ffff00">true</font>);<br>
+&nbsp;&nbsp;TransitionManager.go(scene2, set);<br>
+</font>
+</body>
+</html>

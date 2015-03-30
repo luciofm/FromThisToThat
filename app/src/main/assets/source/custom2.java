@@ -1,6 +1,4 @@
-package source;
-
-public class CustomTransition extends Transition {
+  public class CustomTransition extends Transition {
     @Override
     public void captureStartValues(TransitionValues transitionValues) {
     }

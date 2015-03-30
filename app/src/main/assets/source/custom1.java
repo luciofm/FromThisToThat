@@ -1,6 +1,4 @@
-package source;
-
-TransitionSet set = new TransitionSet();
+  TransitionSet set = new TransitionSet();
   set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
   Pop pop = new Pop();
   pop.setPropagation(new CircularPropagation());
@@ -13,4 +11,4 @@ TransitionSet set = new TransitionSet();
   });
 
   set.addTransition(new ChangeBounds()).addTransition(pop);
-  AnimUtils.beginDelayedTransition(container3, set);
+  TransitionManager.beginDelayedTransition(container3, set);

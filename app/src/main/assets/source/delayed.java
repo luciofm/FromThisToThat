@@ -1,5 +1,4 @@
-package source;
-// Showing register fields...
+  // Showing register fields...
   TransitionManager.beginDelayedTransition(regContainer);
 
   editUsername.setVisibility(View.VISIBLE);
