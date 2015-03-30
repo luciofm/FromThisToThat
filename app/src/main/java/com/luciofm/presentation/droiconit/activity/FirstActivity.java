@@ -16,11 +16,11 @@ public class FirstActivity extends BaseActivity {
     @Override
     ArrayList<Class<? extends BaseFragment>> getFragmentsList() {
         ArrayList<Class<? extends BaseFragment>> fragments = new ArrayList<>();
-        fragments.add(HelloFragment.class);
+        /*fragments.add(HelloFragment.class);
         fragments.add(MyselfFragment.class);
         fragments.add(WorkFragment.class);
         fragments.add(IntroFragment.class);
-        fragments.add(LayoutTransitionFragment.class);
+        fragments.add(LayoutTransitionFragment.class);*/
         fragments.add(SceneFragment.class);
         return fragments;
     }

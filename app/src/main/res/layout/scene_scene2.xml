@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:id="@+id/sceneContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="#5fFFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,7 +12,6 @@
         android:layout_height="96dp"
         android:src="@drawable/ic_image"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:scaleType="fitCenter"/>
 
@@ -25,6 +26,7 @@
         android:textSize="16sp"
         android:paddingBottom="10dp"
         android:gravity="center"
+        android:textColor="@color/white_opaque"
         android:text="Add to Collections"
         android:layout_toRightOf="@+id/image"/>
 
@@ -32,7 +34,7 @@
         android:id="@+id/graySeparator"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#ff555555"
+        android:background="@color/white_opaque"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
         android:layout_marginBottom="10dp"
@@ -44,6 +46,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtAddToCollections"
+        android:textColor="@color/white_opaque"
+        android:textColorHint="@color/white_opaque"
+        android:backgroundTint="@color/white_opaque"
         android:gravity="center"
         android:layout_below="@+id/graySeparator"
         android:layout_marginRight="10dp"
@@ -96,8 +101,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Add tags"
-            android:textColor="#ff555555"/>
+            android:textColor="@color/white_opaque"
+            android:text="Add tags" />
 
         <EditText
             android:id="@+id/editTextTags"
@@ -117,7 +122,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Tags are keywords that must describe the image."
-            android:textColor="#ff555555"/>
+            android:textColor="@color/white_opaque"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,6 +130,6 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Separate each tag by hitting the \'enter\' key."
-            android:textColor="#ff555555"/>
+            android:textColor="@color/white_opaque"/>
     </LinearLayout>
 </RelativeLayout>

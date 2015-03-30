@@ -5,6 +5,8 @@ import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.transition.ChangeBounds;
 import android.transition.ChangeImageTransform;
 import android.transition.ChangeTransform;
@@ -13,6 +15,7 @@ import android.transition.Fade;
 import android.transition.Scene;
 import android.transition.Slide;
 import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.transition.TransitionValues;
@@ -31,6 +34,7 @@ import com.luciofm.presentation.droiconit.anim.XFractionProperty;
 import com.luciofm.presentation.droiconit.anim.YFractionProperty;
 import com.luciofm.presentation.droiconit.transitions.NoTransition;
 import com.luciofm.presentation.droiconit.transitions.TransitionListenerAdapter;
+import com.luciofm.presentation.droiconit.util.IOUtils;
 import com.luciofm.presentation.droiconit.util.Utils;
 
 import butterknife.ButterKnife;
@@ -38,6 +42,8 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class SceneFragment extends BaseFragment {
+
+    private static final int ANIM_DURATION = 600;
 
     @InjectView(R.id.container)
     ViewGroup container;
@@ -48,14 +54,30 @@ public class SceneFragment extends BaseFragment {
     @InjectView(R.id.checkMark)
     View checkMark;
 
+    @InjectView(R.id.container2)
+    ViewGroup container2;
     @InjectView(R.id.root)
     ViewGroup root;
+    @InjectView(R.id.root2)
+    ViewGroup root2;
 
     @InjectView(R.id.textSwitcher)
     TextSwitcher textSwitcher;
+    @InjectView(R.id.textCode)
+    TextSwitcher codeSwitcher;
 
+    TransitionManager tm;
     Scene scene1;
     Scene scene2;
+
+    Spanned code1;
+    Spanned code2;
+    Spanned code3;
+    Spanned code4;
+    Spanned code5;
+    Spanned code6;
+    Spanned code7;
+
 
     public SceneFragment() {
     }
@@ -79,8 +101,26 @@ public class SceneFragment extends BaseFragment {
         textSwitcher.setInAnimation(getActivity(), android.R.anim.fade_in);
         textSwitcher.setOutAnimation(getActivity(), android.R.anim.fade_out);
 
-        scene1 = new Scene(root, (ViewGroup) root.findViewById(R.id.sceneContainer));
+        codeSwitcher.setInAnimation(getActivity(), android.R.anim.slide_in_left);
+        codeSwitcher.setOutAnimation(getActivity(), android.R.anim.slide_out_right);
+
+        code1 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/scenes1.xml.html"));
+        code2 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/scenes2.xml.html"));
+        code3 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/scenes3.xml.html"));
+        code4 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/scene_transition.xml.html"));
+        code5 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/to_details.xml.html"));
+        code6 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/from_details.xml.html"));
+        code7 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/scene_code.java.html"));
+
+        tm = TransitionInflater.from(getActivity()).inflateTransitionManager(R.transition.scene_transition, root);
+        scene1 = Scene.getSceneForLayout(root, R.layout.scene_scene1, getActivity());
         scene2 = Scene.getSceneForLayout(root, R.layout.scene_scene2, getActivity());
+        scene2.setEnterAction(new Runnable() {
+            @Override
+            public void run() {
+                ((ImageView) scene2.getSceneRoot().findViewById(R.id.image)).setImageResource(R.drawable.ic_image);
+            }
+        });
 
         return v;
     }
@@ -89,7 +129,6 @@ public class SceneFragment extends BaseFragment {
     public void onNextPressed() {
         TransitionSet image;
         TransitionSet set;
-        TransitionSet set2;
         switch (++currentStep) {
             case 2:
                 container.setLayoutTransition(new LayoutTransition());
@@ -98,48 +137,26 @@ public class SceneFragment extends BaseFragment {
                 params.topMargin = Utils.dpToPx(getActivity(), 40) * -1;
                 titleContainer.setLayoutParams(params);
 
-                root.setVisibility(View.VISIBLE);
+                container2.setVisibility(View.VISIBLE);
                 textSwitcher.setVisibility(View.VISIBLE);
-                textSwitcher.setText("Layout 1");
+                textSwitcher.setText("Layouts 1 & 2");
                 break;
             case 3:
                 container.setLayoutTransition(null);
-                TransitionManager.go(scene2, new NoTransition());
-                textSwitcher.setText("Layout 2");
+                TransitionManager.beginDelayedTransition(container);
+                root2.setVisibility(View.GONE);
+                textSwitcher.setText("Scene 1");
                 break;
             case 4:
-                TransitionManager.go(scene1, new NoTransition());
-                textSwitcher.setText("Scene 1");
-                break;
-            case 5:
-                image = new TransitionSet();
-                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
-                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds()).addTransition(new Fade(Fade.OUT));
-                set = new TransitionSet();
-                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
-                set.addTransition(image).addTransition(new Fade(Fade.IN));
-                TransitionManager.go(scene2, set);
+                tm.transitionTo(scene2);
                 textSwitcher.setText("Scene 2");
                 break;
-            case 6:
-                image = new TransitionSet();
-                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
-                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds());
-                set = new TransitionSet();
-                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
-                set.addTransition(new Fade(Fade.IN)).addTransition(image);
-                set.excludeTarget(R.id.checkMark, true);
+            case 5:
                 checkMark.setAlpha(0);
-                set.addListener(new TransitionListenerAdapter() {
-                    @Override
-                    public void onTransitionEnd(Transition transition) {
-                        checkMark.animate().alpha(1f);
-                    }
-                });
-                TransitionManager.go(scene1, set);
+                tm.transitionTo(scene1);
                 textSwitcher.setText("Scene 1");
                 break;
-            case 7:
+            case 6:
                 checkMark.animate().alpha(0f);
                 image = new TransitionSet();
                 image.setOrdering(TransitionSet.ORDERING_TOGETHER);
@@ -148,27 +165,16 @@ public class SceneFragment extends BaseFragment {
                 set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
                 set.addTransition(image).addTransition(new Slide(Gravity.BOTTOM));
                 set.excludeTarget(R.id.checkMark, true);
+                set.setDuration(ANIM_DURATION);
                 TransitionManager.go(scene2, set);
                 textSwitcher.setText("Scene 2 - sliding");
                 break;
-            case 8:
-                image = new TransitionSet();
-                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
-                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds());;
-                set = new TransitionSet();
-                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
-                set.addTransition(new Slide(Gravity.BOTTOM)).addTransition(image);
-                set.excludeTarget(R.id.checkMark, true);
-                set.addListener(new TransitionListenerAdapter() {
-                    @Override
-                    public void onTransitionEnd(Transition transition) {
-                        checkMark.animate().alpha(1f);
-                    }
-                });
-                TransitionManager.go(scene1, set);
+            case 7:
+                checkMark.setAlpha(0f);
+                tm.transitionTo(scene1);
                 textSwitcher.setText("Scene 1");
                 break;
-            case 9:
+            case 8:
                 checkMark.animate().alpha(0f);
                 Slide slide = new Slide();
                 slide.setSlideEdge(Gravity.BOTTOM);
@@ -176,7 +182,7 @@ public class SceneFragment extends BaseFragment {
                     @Override
                     public long getStartDelay(ViewGroup sceneRoot, Transition transition, TransitionValues startValues, TransitionValues endValues) {
                         long delay = super.getStartDelay(sceneRoot, transition, startValues, endValues);
-                        return delay * 8;
+                        return delay * 14;
                     }
                 });
                 slide.setEpicenterCallback(new Transition.EpicenterCallback() {
@@ -195,8 +201,136 @@ public class SceneFragment extends BaseFragment {
                 set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
                 set.addTransition(image).addTransition(slide);
                 set.excludeTarget(R.id.checkMark, true);
+                set.setDuration(ANIM_DURATION + (ANIM_DURATION / 2));
                 TransitionManager.go(scene2, set);
                 textSwitcher.setText("Scene 2 - sliding delayed");
+                break;
+            case 9:
+                container.setLayoutTransition(new LayoutTransition());
+                container2.setVisibility(View.GONE);
+                textSwitcher.setVisibility(View.GONE);
+                codeSwitcher.setVisibility(View.VISIBLE);
+                codeSwitcher.setText(code1);
+                break;
+            case 10:
+                container.setLayoutTransition(null);
+                codeSwitcher.setText(code2);
+                break;
+            case 11:
+                codeSwitcher.setText(code3);
+                break;
+            case 12:
+                codeSwitcher.setText(code4);
+                break;
+            case 13:
+                codeSwitcher.setText(code5);
+                break;
+            case 14:
+                codeSwitcher.setText(code6);
+                break;
+            case 15:
+                codeSwitcher.setText(code7);
+                break;
+            /*case 4:
+                codeSwitcher.setText(code2);
+                break;
+            case 5:
+                TransitionManager.go(scene1, new NoTransition());
+                textSwitcher.setText("Scene 1");
+                break;
+            case 6:
+                image = new TransitionSet();
+                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
+                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds()).addTransition(new Fade(Fade.OUT));
+                set = new TransitionSet();
+                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
+                set.setDuration(ANIM_DURATION);
+                set.addTransition(image).addTransition(new Fade(Fade.IN));
+                TransitionManager.go(scene2, set);
+                textSwitcher.setText("Scene 2 - Animated");
+                break;
+            case 7:
+                image = new TransitionSet();
+                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
+                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds());
+                set = new TransitionSet();
+                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
+                set.addTransition(new Fade(Fade.IN)).addTransition(image);
+                set.excludeTarget(R.id.checkMark, true);
+                set.setDuration(ANIM_DURATION);
+                checkMark.setAlpha(0);
+                set.addListener(new TransitionListenerAdapter() {
+                    @Override
+                    public void onTransitionEnd(Transition transition) {
+                        checkMark.animate().alpha(1f);
+                    }
+                });
+                TransitionManager.go(scene1, set);
+                textSwitcher.setText("Scene 1");
+                break;
+            case 8:
+                checkMark.animate().alpha(0f);
+                image = new TransitionSet();
+                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
+                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds());;
+                set = new TransitionSet();
+                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
+                set.addTransition(image).addTransition(new Slide(Gravity.BOTTOM));
+                set.excludeTarget(R.id.checkMark, true);
+                set.setDuration(ANIM_DURATION);
+                TransitionManager.go(scene2, set);
+                textSwitcher.setText("Scene 2 - sliding");
+                break;
+            case 9:
+                image = new TransitionSet();
+                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
+                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds());;
+                set = new TransitionSet();
+                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
+                set.addTransition(new Slide(Gravity.BOTTOM)).addTransition(image);
+                set.excludeTarget(R.id.checkMark, true);
+                set.setDuration(ANIM_DURATION);
+                set.addListener(new TransitionListenerAdapter() {
+                    @Override
+                    public void onTransitionEnd(Transition transition) {
+                        checkMark.animate().alpha(1f);
+                    }
+                });
+                TransitionManager.go(scene1, set);
+                textSwitcher.setText("Scene 1");
+                break;
+            case 10:
+                checkMark.animate().alpha(0f);
+                Slide slide = new Slide();
+                slide.setSlideEdge(Gravity.BOTTOM);
+                slide.setPropagation(new CircularPropagation() {
+                    @Override
+                    public long getStartDelay(ViewGroup sceneRoot, Transition transition, TransitionValues startValues, TransitionValues endValues) {
+                        long delay = super.getStartDelay(sceneRoot, transition, startValues, endValues);
+                        return delay * 14;
+                    }
+                });
+                slide.setEpicenterCallback(new Transition.EpicenterCallback() {
+                    @Override
+                    public Rect onGetEpicenter(Transition transition) {
+                        int[] loc = new int[2];
+                        root.getLocationOnScreen(loc);
+
+                        return new Rect((root.getWidth() / 2) - 40, loc[1], (root.getWidth() / 2) + 40, loc[1] + 40);
+                    }
+                });
+                image = new TransitionSet();
+                image.setOrdering(TransitionSet.ORDERING_TOGETHER);
+                image.addTransition(new ChangeImageTransform()).addTransition(new ChangeBounds());;
+                set = new TransitionSet();
+                set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);
+                set.addTransition(image).addTransition(slide);
+                set.excludeTarget(R.id.checkMark, true);
+                set.setDuration(ANIM_DURATION + (ANIM_DURATION / 2));
+                TransitionManager.go(scene2, set);
+                textSwitcher.setText("Scene 2 - sliding delayed");
+                break;*/
+
             default:
                 ((BaseActivity) getActivity()).nextFragment();
         }
@@ -205,6 +339,23 @@ public class SceneFragment extends BaseFragment {
     @OnClick(R.id.container)
     public void onClick() {
         onNextPressed();
+    }
+
+    @Override
+    public void onPrevPressed() {
+        if (--currentStep >= 3) {
+            container.setLayoutTransition(null);
+            TransitionManager.beginDelayedTransition(container);
+            container2.setVisibility(View.VISIBLE);
+            codeSwitcher.setVisibility(View.GONE);
+            root2.setVisibility(View.GONE);
+            textSwitcher.setText("Scene 1");
+            scene1.enter();
+            currentStep = 3;
+            return;
+        }
+
+        super.onPrevPressed();
     }
 
     @Override

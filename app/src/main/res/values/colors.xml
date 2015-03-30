@@ -2,6 +2,7 @@
 <resources>
 
     <color name="white_opaque">#ffffffff</color>
+    <color name="white_almost_opaque">#Efffffff</color>
 
     <color name="light_muted_rgb">#ff97a3a5</color>
     <color name="light_muted_title">#7f000000</color>

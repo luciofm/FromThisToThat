@@ -9,4 +9,15 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="BaseTextCode">
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">@dimen/padding_small</item>
+        <item name="android:textColor">@color/white_almost_opaque</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
+    <style name="TextCode" parent="BaseTextCode">
+    </style>
 </resources>

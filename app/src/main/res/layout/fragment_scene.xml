@@ -23,7 +23,7 @@
         <com.luciofm.presentation.droiconit.widget.TextView
             android:text="Scenes"
             android:textSize="@dimen/text_title_huge"
-            android:textColor="@color/swatch_05_title"
+            android:textColor="@color/white_almost_opaque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,19 +31,36 @@
             app:typeFace="YanoneKaffeesatz-Regular.ttf"/>
     </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="320dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginTop="-32dp"
-        android:padding="8dp"
-        android:background="#5fFFFFFF"
-        android:id="@+id/root"
+        android:layout_weight="1"
+        android:id="@+id/container2"
         android:visibility="gone"
-        tools:visibility="visible"
-        android:gravity="center" >
-        <include layout="@layout/scene_scene1" />
-    </FrameLayout>
+        tools:visibility="gone"
+        android:gravity="center">
+        <FrameLayout
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:background="#5fFFFFFF"
+            android:id="@+id/root"
+            android:gravity="center" >
+            <include layout="@layout/scene_scene1" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="120dp"
+            android:padding="8dp"
+            android:background="#5fFFFFFF"
+            android:id="@+id/root2"
+            android:gravity="center" >
+            <include layout="@layout/scene_scene2" />
+        </FrameLayout>
+    </LinearLayout>
 
     <TextSwitcher
         android:layout_width="wrap_content"
@@ -51,7 +68,7 @@
         android:layout_marginTop="4dp"
         android:id="@+id/textSwitcher"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
         <com.luciofm.presentation.droiconit.widget.TextView
             android:text="scene 1"
             android:textSize="@dimen/text_title_very_small"
@@ -68,5 +85,26 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:typeface="monospace" />
+    </TextSwitcher>
+
+    <TextSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#5f000000"
+        android:layout_marginTop="-32dp"
+        android:id="@+id/textCode"
+        android:visibility="gone"
+        tools:visibility="visible">
+        <TextView
+            android:layout_centerInParent="true"
+            style="@style/TextCode"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <TextView
+            android:layout_centerInParent="true"
+            style="@style/TextCode"
+            android:visibility="gone"
+            tools:visibility="visible"/>
     </TextSwitcher>
 </LinearLayout>

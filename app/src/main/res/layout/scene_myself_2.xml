@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/swatch_05_title"
+        android:textColor="@color/white_almost_opaque"
         android:layout_marginTop="-60dp"
         android:layout_marginBottom="4dp"
         android:text="Lúcio Maciel"
@@ -32,7 +32,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/swatch_05_title"
+        android:textColor="@color/white_almost_opaque"
         android:text="\@luciofm"
         app:typeFace="YanoneKaffeesatz-Bold.ttf" />
     <com.luciofm.presentation.droiconit.widget.TextView
@@ -43,7 +43,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/swatch_05_title"
+        android:textColor="@color/white_almost_opaque"
         android:text="github.com/luciofm"
         app:typeFace="YanoneKaffeesatz-Bold.ttf" />
 </merge>
