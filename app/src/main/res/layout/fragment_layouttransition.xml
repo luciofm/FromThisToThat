@@ -23,7 +23,7 @@
         <com.luciofm.presentation.droiconit.widget.TextView
             android:text="LayoutTransition"
             android:textSize="@dimen/text_title_really_big"
-            android:textColor="@color/dark_muted_body"
+            android:textColor="@color/white_almost_opaque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -37,7 +37,7 @@
             <com.luciofm.presentation.droiconit.widget.TextView
                 android:text="android:animateLayoutChanges=false"
                 android:textSize="@dimen/text_title_very_small"
-                android:textColor="@color/dark_muted_body"
+                android:textColor="@color/white_almost_opaque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -45,7 +45,7 @@
             <com.luciofm.presentation.droiconit.widget.TextView
                 android:text="android:animateLayoutChanges=true"
                 android:textSize="@dimen/text_title_very_small"
-                android:textColor="@color/dark_muted_body"
+                android:textColor="@color/white_almost_opaque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

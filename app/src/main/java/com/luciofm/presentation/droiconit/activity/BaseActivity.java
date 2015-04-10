@@ -9,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.luciofm.presentation.droiconit.R;
 import com.luciofm.presentation.droiconit.fragment.BaseFragment;
 
 import java.util.ArrayList;
@@ -68,10 +67,14 @@ public abstract class BaseActivity extends Activity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
+    public boolean shouldSetSystemUiVisibility() {
+        return true;
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
+        if (hasFocus && shouldSetSystemUiVisibility()) {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -99,15 +102,21 @@ public abstract class BaseActivity extends Activity {
         int scanCode = event.getScanCode();
         switch (scanCode) {
             case BUTTON_NEXT:
+            case 106:
             case 28:
             case 229:
             case 0x74:
-                fragment.onNextPressed();
+                if (fragment != null)
+                    fragment.onNextPressed();
                 return true;
             case BUTTON_PREV:
+            case 105:
             case 0x79:
             case 57:
-                fragment.onPrevPressed();
+                if (fragment != null)
+                    fragment.onPrevPressed();
+                else
+                    onBackPressed();
                 return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -127,7 +136,7 @@ public abstract class BaseActivity extends Activity {
     }
 
     public void nextFragment(boolean backStack, Bundle args) {
-        if (index == fragments.size())
+        if (fragments == null || index == fragments.size())
             return;
         Class<? extends BaseFragment> clazz = fragments.get(index++);
         try {

@@ -9,16 +9,17 @@
 </head>
 <body bgcolor="#000000" text="#ffffff">
 <font face="monospace">
-&nbsp;&nbsp;checkMark.animate().alpha(<font color="#ffff00">0f</font>);<br>
-&nbsp;&nbsp;bounds =&nbsp;<font color="#ffff00">new</font>&nbsp;TransitionSet();<br>
-&nbsp;&nbsp;bounds.setOrdering(TransitionSet.ORDERING_TOGETHER);<br>
-&nbsp;&nbsp;bounds.addTransition(<font color="#ffff00">new</font>&nbsp;ChangeImageTransform())<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.addTransition(<font color="#ffff00">new</font>&nbsp;ChangeBounds());;<br>
-&nbsp;&nbsp;set =&nbsp;<font color="#ffff00">new</font>&nbsp;TransitionSet();<br>
-&nbsp;&nbsp;set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);<br>
-&nbsp;&nbsp;set.addTransition(bounds).addTransition(<font color="#ffff00">new</font>&nbsp;Slide(Gravity.BOTTOM));<br>
-&nbsp;&nbsp;set.excludeTarget(R.id.checkMark,&nbsp;<font color="#ffff00">true</font>);<br>
-&nbsp;&nbsp;TransitionManager.go(scene2, set);<br>
+checkMark.animate().alpha(<font color="#ffff00">0f</font>);<br>
+bounds =&nbsp;<font color="#ffff00">new</font>&nbsp;TransitionSet();<br>
+bounds.setOrdering(ORDERING_TOGETHER);<br>
+bounds.addTransition(<font color="#ffff00">new</font>&nbsp;ChangeImageTransform())<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.addTransition(<font color="#ffff00">new</font>&nbsp;ChangeBounds());;<br>
+set =&nbsp;<font color="#ffff00">new</font>&nbsp;TransitionSet();<br>
+set.setOrdering(ORDERING_SEQUENTIAL);<br>
+set.addTransition(bounds)<br>
+&nbsp;&nbsp; .addTransition(<font color="#ffff00">new</font>&nbsp;Slide(Gravity.BOTTOM));<br>
+set.excludeTarget(R.id.checkMark,&nbsp;<font color="#ffff00">true</font>);<br>
+TransitionManager.go(scene2, set);<br>
 </font>
 </body>
 </html>

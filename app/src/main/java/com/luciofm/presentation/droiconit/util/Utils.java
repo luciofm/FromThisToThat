@@ -1,12 +1,17 @@
 package com.luciofm.presentation.droiconit.util;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v7.graphics.Palette;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 public class Utils {
 
@@ -69,5 +74,51 @@ public class Utils {
                 view.dispatchTouchEvent(motionEvent);
             }
         }, duration);
+    }
+
+    public static Palette.Swatch getBackgroundSwatch(Palette palette) {
+        if (palette.getDarkVibrantSwatch() != null)
+            return palette.getDarkVibrantSwatch();
+        if (palette.getDarkMutedSwatch() != null)
+            return palette.getDarkMutedSwatch();
+        if (palette.getVibrantSwatch() != null)
+            return palette.getVibrantSwatch();
+        if (palette.getMutedSwatch() != null)
+            return palette.getMutedSwatch();
+        if (palette.getSwatches().size() >= 1)
+            return palette.getSwatches().get(0);
+        return null;
+    }
+
+    public static Palette.Swatch getTitleSwatch(Palette palette) {
+        if (palette.getLightVibrantSwatch() != null)
+            return palette.getLightVibrantSwatch();
+        if (palette.getLightMutedSwatch() != null)
+            return palette.getLightMutedSwatch();
+        if (palette.getVibrantSwatch() != null)
+            return palette.getVibrantSwatch();
+        if (palette.getMutedSwatch() != null)
+            return palette.getMutedSwatch();
+        if (palette.getSwatches().size() >= 2)
+            return palette.getSwatches().get(1);
+        if (palette.getSwatches().size() >= 1)
+            return palette.getSwatches().get(0);
+        return null;
+    }
+
+    public static void colorRipple(FrameLayout view, int bgColor, int tintColor) {
+        RippleDrawable ripple = (RippleDrawable) view.getForeground();
+        ColorDrawable rippleBackground = (ColorDrawable) ripple.getDrawable(0);
+        rippleBackground.setColor(0x7f000000 + bgColor);
+
+        ripple.setColor(ColorStateList.valueOf(0x7f000000 + tintColor));
+    }
+
+    public static void colorRippleBackground(View view, int bgColor, int tintColor) {
+        RippleDrawable ripple = (RippleDrawable) view.getBackground();
+        ColorDrawable rippleBackground = (ColorDrawable) ripple.getDrawable(0);
+        rippleBackground.setColor(0x7f000000 + bgColor);
+
+        ripple.setColor(ColorStateList.valueOf(0xAf000000 + tintColor));
     }
 }

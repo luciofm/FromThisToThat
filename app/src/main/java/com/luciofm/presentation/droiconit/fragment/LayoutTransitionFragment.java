@@ -73,7 +73,7 @@ public class LayoutTransitionFragment extends BaseFragment {
                 title.setVisibility(View.GONE);
                 textSwitcher.setVisibility(View.VISIBLE);
                 container2.setVisibility(View.VISIBLE);
-                textSwitcher.setText("android:animateLayoutChanges=\"false\"");
+                textSwitcher.setText("LayoutTransition");
                 break;
             case 3:
                 textView = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.text_item, container3, false);
@@ -134,7 +134,7 @@ public class LayoutTransitionFragment extends BaseFragment {
                 container4.removeViewAt(2);
                 break;
             case 4:
-                textSwitcher.setText("android:animateLayoutChanges=\"false\"");
+                textSwitcher.setText("LayoutTransition");
                 break;
             case 3:
                 container3.setLayoutTransition(null);

@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.luciofm.presentation.droiconit.R;
 import com.luciofm.presentation.droiconit.activity.BaseActivity;
 import com.luciofm.presentation.droiconit.anim.YFractionProperty;
+import com.luciofm.presentation.droiconit.transitions.NoTransition;
 import com.luciofm.presentation.droiconit.util.IOUtils;
 import com.luciofm.presentation.droiconit.util.Utils;
 
@@ -94,8 +95,8 @@ public class SceneFragment extends BaseFragment {
         ButterKnife.inject(this, v);
         currentStep = 1;
 
-        textSwitcher.setInAnimation(getActivity(), android.R.anim.fade_in);
-        textSwitcher.setOutAnimation(getActivity(), android.R.anim.fade_out);
+        textSwitcher.setInAnimation(getActivity(), android.R.anim.slide_in_left);
+        textSwitcher.setOutAnimation(getActivity(), android.R.anim.slide_out_right);
 
         codeSwitcher.setInAnimation(getActivity(), android.R.anim.slide_in_left);
         codeSwitcher.setOutAnimation(getActivity(), android.R.anim.slide_out_right);
@@ -250,7 +251,7 @@ public class SceneFragment extends BaseFragment {
             codeSwitcher.setVisibility(View.GONE);
             root2.setVisibility(View.GONE);
             textSwitcher.setText("Scene 1");
-            scene1.enter();
+            TransitionManager.go(scene1, new NoTransition());
             currentStep = 3;
             return;
         }

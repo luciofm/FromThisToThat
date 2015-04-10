@@ -9,4 +9,7 @@
         <attr name="numColumns" format="integer" min="0" />
     </declare-styleable>
 
+    <declare-styleable name="CircleTransition">
+        <attr name="color" format="color"/>
+    </declare-styleable>
 </resources>

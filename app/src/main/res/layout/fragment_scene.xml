@@ -68,7 +68,7 @@
         android:layout_marginTop="4dp"
         android:id="@+id/textSwitcher"
         android:visibility="gone"
-        tools:visibility="gone">
+        tools:visibility="visible">
         <com.luciofm.presentation.droiconit.widget.TextView
             android:text="scene 1"
             android:textSize="@dimen/text_title_very_small"
@@ -95,7 +95,7 @@
         android:layout_marginTop="-32dp"
         android:id="@+id/textCode"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
         <TextView
             android:layout_centerInParent="true"
             style="@style/TextCode"

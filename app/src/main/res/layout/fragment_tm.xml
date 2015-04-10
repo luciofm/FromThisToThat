@@ -14,13 +14,15 @@
     <com.luciofm.presentation.droiconit.widget.TextView
         android:id="@+id/text1"
         android:text="Transition Manager"
+        android:padding="16dp"
         android:layout_marginTop="@dimen/padding"
         android:gravity="center"
-        android:textSize="@dimen/text_title"
+        android:textSize="@dimen/text_title_really_big"
         android:layout_gravity="center_horizontal|top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/light_muted_body"
+        android:textColor="@color/white_almost_opaque"
+        android:background="@color/light_muted_body"
         app:typeFace="YanoneKaffeesatz-Regular.ttf"/>
 
     <LinearLayout
@@ -107,6 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_blue"
+                    android:textColor="@color/white_almost_opaque"
                     android:text="Register"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
@@ -164,6 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_blue"
+                    android:textColor="@color/white_almost_opaque"
                     android:text="Login"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
@@ -178,10 +182,9 @@
         android:layout_height="match_parent"
         android:id="@+id/text2"
         android:background="#8f000000"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:visibility="gone">
         <TextView

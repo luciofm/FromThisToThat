@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
-    android:transitionOrdering="sequential">
+    android:transitionOrdering="sequential"
+    android:duration="900">
     <transitionSet>
         <fade android:fadingMode="fade_in" />
         <targets>

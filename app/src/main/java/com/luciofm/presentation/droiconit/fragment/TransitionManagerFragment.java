@@ -14,19 +14,18 @@ import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.transition.TransitionValues;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.luciofm.presentation.droiconit.R;
 import com.luciofm.presentation.droiconit.activity.BaseActivity;
-import com.luciofm.presentation.droiconit.anim.AnimUtils;
-import com.luciofm.presentation.droiconit.anim.Pop;
 import com.luciofm.presentation.droiconit.anim.XFractionProperty;
+import com.luciofm.presentation.droiconit.transitions.Pop;
 import com.luciofm.presentation.droiconit.util.IOUtils;
 import com.luciofm.presentation.droiconit.util.Utils;
 
@@ -38,8 +37,6 @@ import butterknife.InjectViews;
 import butterknife.OnClick;
 
 public class TransitionManagerFragment extends BaseFragment {
-
-    private static final String TAG = "MorphingButtonCodeFragment";
 
     @InjectView(R.id.container)
     ViewGroup root;
@@ -104,10 +101,10 @@ public class TransitionManagerFragment extends BaseFragment {
         code1 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/morph.xml.html"));
         code2 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/delayed.java.html"));
 
-        code3 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom1.java.html"));
-        code4 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom2.java.html"));
-        code5 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom3.java.html"));
-        code6 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom4.java.html"));
+        code3 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom2.java.html"));
+        code4 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom3.java.html"));
+        code5 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom4.java.html"));
+        code6 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom1.java.html"));
 
         text2.setInAnimation(getActivity(), android.R.anim.slide_in_left);
         text2.setOutAnimation(getActivity(), android.R.anim.slide_out_right);
@@ -121,6 +118,10 @@ public class TransitionManagerFragment extends BaseFragment {
         switch (++currentStep) {
             case 2:
                 text1.animate().scaleX(0.6f).scaleY(0.6f);
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) text1.getLayoutParams();
+                params.topMargin = Utils.dpToPx(getActivity(), 40) * -1;
+                text1.setLayoutParams(params);
+
                 TransitionManager.beginDelayedTransition(root);
                 container2.setVisibility(View.VISIBLE);
                 break;

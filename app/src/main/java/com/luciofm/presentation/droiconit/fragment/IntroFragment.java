@@ -3,8 +3,8 @@ package com.luciofm.presentation.droiconit.fragment;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
@@ -17,8 +17,6 @@ import android.widget.TextView;
 
 import com.luciofm.presentation.droiconit.R;
 import com.luciofm.presentation.droiconit.activity.BaseActivity;
-import com.luciofm.presentation.droiconit.activity.MainActivity;
-import com.luciofm.presentation.droiconit.anim.XFractionProperty;
 import com.luciofm.presentation.droiconit.anim.YFractionProperty;
 
 import butterknife.ButterKnife;

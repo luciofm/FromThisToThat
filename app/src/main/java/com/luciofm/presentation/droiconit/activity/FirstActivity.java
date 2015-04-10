@@ -1,11 +1,15 @@
 package com.luciofm.presentation.droiconit.activity;
 
 import com.luciofm.presentation.droiconit.R;
+import com.luciofm.presentation.droiconit.fragment.ActivityTransitionFragment;
+import com.luciofm.presentation.droiconit.fragment.AwesomeFragment;
 import com.luciofm.presentation.droiconit.fragment.BaseFragment;
 import com.luciofm.presentation.droiconit.fragment.HelloFragment;
 import com.luciofm.presentation.droiconit.fragment.IntroFragment;
 import com.luciofm.presentation.droiconit.fragment.LayoutTransitionFragment;
+import com.luciofm.presentation.droiconit.fragment.MoviesFragment;
 import com.luciofm.presentation.droiconit.fragment.MyselfFragment;
+import com.luciofm.presentation.droiconit.fragment.QuesionsFragment;
 import com.luciofm.presentation.droiconit.fragment.SceneFragment;
 import com.luciofm.presentation.droiconit.fragment.TransitionManagerFragment;
 import com.luciofm.presentation.droiconit.fragment.WorkFragment;
@@ -24,6 +28,10 @@ public class FirstActivity extends BaseActivity {
         fragments.add(LayoutTransitionFragment.class);
         fragments.add(TransitionManagerFragment.class);
         fragments.add(SceneFragment.class);
+        fragments.add(ActivityTransitionFragment.class);
+        fragments.add(MoviesFragment.class);
+        fragments.add(AwesomeFragment.class);
+        fragments.add(QuesionsFragment.class);
         return fragments;
     }
 
