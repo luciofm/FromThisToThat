@@ -77,10 +77,10 @@ public class Utils {
     }
 
     public static Palette.Swatch getBackgroundSwatch(Palette palette) {
-        if (palette.getDarkVibrantSwatch() != null)
-            return palette.getDarkVibrantSwatch();
         if (palette.getDarkMutedSwatch() != null)
             return palette.getDarkMutedSwatch();
+        if (palette.getDarkVibrantSwatch() != null)
+            return palette.getDarkVibrantSwatch();
         if (palette.getVibrantSwatch() != null)
             return palette.getVibrantSwatch();
         if (palette.getMutedSwatch() != null)

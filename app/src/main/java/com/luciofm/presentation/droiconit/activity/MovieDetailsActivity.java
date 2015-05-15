@@ -118,7 +118,6 @@ public class MovieDetailsActivity extends BaseActivity {
                         contentHeader.setBackgroundColor(light.getRgb());
 
                         scene.setImageResource(movie.getSceneId());
-                        //Picasso.with(MovieDetailsActivity.this).load(movie.getSceneId()).into(scene);
                         title.setTextColor(light.getTitleTextColor());
                         title.setText(movie.getTitle());
                         year.setTextColor(light.getBodyTextColor());
@@ -143,23 +142,6 @@ public class MovieDetailsActivity extends BaseActivity {
     }
 
     protected void setupPostTransition() {
-        TransitionSet set;
-        CircularPropagation propagation;
-        Explode explode;
-        Slide slide;
-        Fade fade;
-        switch (position) {
-            case 2:
-                /*set = new TransitionSet();
-                set.addTransition(new Slide(Gravity.RIGHT).addTarget(R.id.scene));
-                set.addTransition(new Slide().addTarget(R.id.moreContent));
-
-
-                TransitionManager.beginDelayedTransition(content, set);
-                scene.setVisibility(View.VISIBLE);
-                moreContent.setVisibility(View.VISIBLE);*/
-                break;
-        }
     }
 
     protected void setupTransition() {
@@ -190,7 +172,6 @@ public class MovieDetailsActivity extends BaseActivity {
                 slide = new Slide(Gravity.RIGHT);
                 propagation = new CircularPropagation();
                 propagation.setPropagationSpeed(1f);
-                //slide.setDuration(900);
                 getWindow().setEnterTransition(slide);
                 getWindow().setReturnTransition(slide);
                 getWindow().setAllowEnterTransitionOverlap(false);
@@ -199,8 +180,6 @@ public class MovieDetailsActivity extends BaseActivity {
             case 5:
                 slide = new Slide(Gravity.BOTTOM);
                 slide2 = new Slide(Gravity.TOP);
-                /*slide.setDuration(900);
-                slide2.setDuration(900);*/
                 getWindow().setEnterTransition(slide);
                 getWindow().setReturnTransition(slide2);
                 getWindow().setAllowEnterTransitionOverlap(false);

@@ -11,6 +11,7 @@ import com.luciofm.presentation.droiconit.fragment.MoviesFragment;
 import com.luciofm.presentation.droiconit.fragment.MyselfFragment;
 import com.luciofm.presentation.droiconit.fragment.QuesionsFragment;
 import com.luciofm.presentation.droiconit.fragment.SceneFragment;
+import com.luciofm.presentation.droiconit.fragment.SlackFragment;
 import com.luciofm.presentation.droiconit.fragment.TransitionManagerFragment;
 import com.luciofm.presentation.droiconit.fragment.WorkFragment;
 
@@ -32,6 +33,7 @@ public class FirstActivity extends BaseActivity {
         fragments.add(MoviesFragment.class);
         fragments.add(AwesomeFragment.class);
         fragments.add(QuesionsFragment.class);
+        fragments.add(SlackFragment.class);
         return fragments;
     }
 

@@ -108,6 +108,8 @@ public abstract class BaseActivity extends Activity {
             case 0x74:
                 if (fragment != null)
                     fragment.onNextPressed();
+                else
+                    onBackPressed();
                 return true;
             case BUTTON_PREV:
             case 105:
