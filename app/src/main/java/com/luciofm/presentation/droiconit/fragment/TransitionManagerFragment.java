@@ -84,6 +84,7 @@ public class TransitionManagerFragment extends BaseFragment {
 
     private boolean registerOpened = false;
     private boolean loginOpened = false;
+    private boolean memeShowed = false;
 
     public TransitionManagerFragment() {
     }
@@ -149,11 +150,18 @@ public class TransitionManagerFragment extends BaseFragment {
                 Utils.dispatchTouch(reg_container);
                 break;
             case 8:
-                TransitionManager.beginDelayedTransition(root);
-                container2.setVisibility(View.GONE);
-                text1.setVisibility(View.GONE);
-                meme.setVisibility(View.VISIBLE);
-                break;
+                if (!memeShowed) {
+                    memeShowed = true;
+                    TransitionManager.beginDelayedTransition(root);
+                    container2.setVisibility(View.GONE);
+                    text1.setVisibility(View.GONE);
+                    meme.setVisibility(View.VISIBLE);
+                    break;
+                } else {
+                    TransitionManager.beginDelayedTransition(root);
+                    container2.setVisibility(View.GONE);
+                    currentStep = 9;
+                }
             case 9:
                 TransitionManager.beginDelayedTransition(root);
                 text1.setVisibility(View.VISIBLE);
@@ -220,6 +228,18 @@ public class TransitionManagerFragment extends BaseFragment {
             default:
                 ((BaseActivity) getActivity()).nextFragment();
         }
+    }
+
+    @Override
+    public void onPrevPressed() {
+        if (--currentStep == 8) {
+            currentStep = 7;
+            text2.setVisibility(View.GONE);
+            container2.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        super.onPrevPressed();
     }
 
     @OnClick(R.id.container)
