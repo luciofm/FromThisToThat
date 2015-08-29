@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
@@ -65,8 +66,13 @@ public class TransitionManagerFragment extends BaseFragment {
     @InjectView(R.id.text2)
     TextSwitcher text2;
 
+    @InjectView(R.id.meme)
+    ImageView meme;
+
     Spanned code1;
     Spanned code2;
+    Spanned codeAuto;
+    Spanned codeTransitions;
     Spanned code3;
     Spanned code4;
     Spanned code5;
@@ -100,6 +106,8 @@ public class TransitionManagerFragment extends BaseFragment {
 
         code1 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/morph.xml.html"));
         code2 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/delayed.java.html"));
+        codeAuto = Html.fromHtml(IOUtils.readFile(getActivity(), "source/delayed2.java.html"));
+        codeTransitions = Html.fromHtml(IOUtils.readFile(getActivity(), "source/transitions.java.html"));
 
         code3 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom2.java.html"));
         code4 = Html.fromHtml(IOUtils.readFile(getActivity(), "source/custom3.java.html"));
@@ -143,12 +151,25 @@ public class TransitionManagerFragment extends BaseFragment {
             case 8:
                 TransitionManager.beginDelayedTransition(root);
                 container2.setVisibility(View.GONE);
-                text2.setVisibility(View.VISIBLE);
+                text1.setVisibility(View.GONE);
+                meme.setVisibility(View.VISIBLE);
                 break;
             case 9:
-                text2.setText(code2);
+                TransitionManager.beginDelayedTransition(root);
+                text1.setVisibility(View.VISIBLE);
+                text2.setVisibility(View.VISIBLE);
+                meme.setVisibility(View.GONE);
                 break;
             case 10:
+                text2.setText(code2);
+                break;
+            case 11:
+                text2.setText(codeAuto);
+                break;
+            case 12:
+                text2.setText(codeTransitions);
+                break;
+            case 13:
                 transitionType = CUSTOM;
                 ButterKnife.apply(register, new ButterKnife.Action<View>() {
                     @Override
@@ -166,34 +187,34 @@ public class TransitionManagerFragment extends BaseFragment {
                 text2.setVisibility(View.GONE);
                 container2.setVisibility(View.VISIBLE);
                 break;
-            case 11:
-                Utils.dispatchTouch(reg_container);
-                break;
-            case 12:
-                Utils.dispatchTouch(buttonReg);
-                break;
-            case 13:
-                Utils.dispatchTouch(login_container);
-                break;
             case 14:
-                Utils.dispatchTouch(buttonLog);
+                Utils.dispatchTouch(reg_container);
                 break;
             case 15:
-                Utils.dispatchTouch(reg_container);
+                Utils.dispatchTouch(buttonReg);
                 break;
             case 16:
+                Utils.dispatchTouch(login_container);
+                break;
+            case 17:
+                Utils.dispatchTouch(buttonLog);
+                break;
+            case 18:
+                Utils.dispatchTouch(reg_container);
+                break;
+            case 19:
                 TransitionManager.beginDelayedTransition(root);
                 container2.setVisibility(View.GONE);
                 text2.setVisibility(View.VISIBLE);
                 text2.setText(code3);
                 break;
-            case 17:
+            case 20:
                 text2.setText(code4);
                 break;
-            case 18:
+            case 21:
                 text2.setText(code5);
                 break;
-            case 19:
+            case 22:
                 text2.setText(code6);
                 break;
             default:

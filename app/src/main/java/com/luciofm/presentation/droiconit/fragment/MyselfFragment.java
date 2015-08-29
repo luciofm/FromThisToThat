@@ -61,7 +61,7 @@ public class MyselfFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.me);
+        originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.lucio_badge);
 
         set = new TransitionSet();
         set.setOrdering(TransitionSet.ORDERING_SEQUENTIAL);

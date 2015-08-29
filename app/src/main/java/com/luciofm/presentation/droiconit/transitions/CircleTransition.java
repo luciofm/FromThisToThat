@@ -20,7 +20,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -37,7 +36,6 @@ import android.transition.Transition;
 import android.transition.TransitionValues;
 import android.util.ArrayMap;
 import android.util.AttributeSet;
-import android.util.FloatMath;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
@@ -253,7 +251,7 @@ public class CircleTransition extends Transition {
     static float calculateMaxRadius(View view) {
         float widthSquared = view.getWidth() * view.getWidth();
         float heightSquared = view.getHeight() * view.getHeight();
-        float radius = FloatMath.sqrt(widthSquared + heightSquared) / 2;
+        float radius = (float) (Math.sqrt(widthSquared + heightSquared) / 2);
         return radius;
     }
 

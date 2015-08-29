@@ -261,7 +261,7 @@ public class SceneFragment extends BaseFragment {
 
     @Override
     public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-        if (transit == 0 | enter) {
+        if (transit == 0) {
             return null;
         }
 

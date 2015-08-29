@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public abstract class BaseActivity extends Activity {
 
-    public static final int BUTTON_NEXT = 104;
-    public static final int BUTTON_PREV = 109;
+    public static final int BUTTON_NEXT = 109;
+    public static final int BUTTON_PREV = 104;
 
     int index = 0;
     View decorView;
@@ -97,7 +97,8 @@ public abstract class BaseActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.d("IFICAN", "onKeyDown: " + keyCode + " - event: " + event.getScanCode());
+        if (keyCode != 58 && event.getScanCode() != 100)
+            Log.d("IFICAN", "onKeyDown: " + keyCode + " - event: " + event.getScanCode());
         BaseFragment fragment = (BaseFragment) getFragmentManager().findFragmentByTag("current");
         int scanCode = event.getScanCode();
         switch (scanCode) {

@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white_almost_opaque"
         android:background="@color/light_muted_body"
-        app:typeFace="YanoneKaffeesatz-Regular.ttf"/>
+        app:typeFace="YanoneKaffeesatz-Regular.ttf"
+        tools:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +33,6 @@
         android:layout_margin="@dimen/padding"
         android:id="@+id/container2"
         android:visibility="gone"
-        tools:visibility="visible"
         android:gravity="center">
         <LinearLayout
             android:layout_width="320dp"
@@ -181,7 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/text2"
-        android:background="#8f000000"
+        android:background="#Cf000000"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
@@ -200,4 +200,11 @@
             style="@style/TextCode"
             android:textSize="28sp"/>
     </TextSwitcher>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/meme"
+        android:visibility="gone"
+        android:src="@drawable/rallat"/>
 </LinearLayout>

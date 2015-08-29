@@ -11,13 +11,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.0"
 
     defaultConfig {
         applicationId "com.luciofm.presentation.droiconit"
         minSdkVersion 21
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -36,8 +36,8 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'net.frakbot:jumpingbeans:1.0-SNAPSHOT@aar'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:palette-v7:22.1.0'
-    compile 'com.android.support:gridlayout-v7:22.1.0'
+    compile 'com.android.support:palette-v7:23.0.0'
+    compile 'com.android.support:gridlayout-v7:23.0.0'
     compile 'org.parceler:parceler-api:0.2.15'
     apt "org.parceler:parceler:0.2.15"
 }

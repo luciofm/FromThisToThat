@@ -5,7 +5,6 @@ import android.app.KeyguardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.util.Log;
 import android.view.KeyEvent;
 
 import com.luciofm.presentation.droiconit.R;
@@ -20,8 +19,8 @@ import static android.os.PowerManager.ON_AFTER_RELEASE;
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
 
 public class MainActivity extends Activity {
-    public static final int BUTTON_NEXT = 104;
-    public static final int BUTTON_PREV = 109;
+    public static final int BUTTON_NEXT = 109;
+    public static final int BUTTON_PREV = 104;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,6 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.d("IFICAN", "onKeyDown: " + keyCode + " - event: " + event.getScanCode());
         BaseFragment fragment = (BaseFragment) getFragmentManager().findFragmentByTag("current");
         int scanCode = event.getScanCode();
         switch (scanCode) {

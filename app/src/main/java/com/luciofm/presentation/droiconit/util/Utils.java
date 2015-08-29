@@ -1,5 +1,6 @@
 package com.luciofm.presentation.droiconit.util;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
@@ -120,5 +121,31 @@ public class Utils {
         rippleBackground.setColor(0x7f000000 + bgColor);
 
         ripple.setColor(ColorStateList.valueOf(0xAf000000 + tintColor));
+    }
+
+    public static void fadeIn(View view) {
+        if (view == null)
+            return;
+
+        view.setVisibility(View.VISIBLE);
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f);
+        alpha.setDuration(300);
+        alpha.start();
+    }
+
+    public static void fadeIn(View view, int delay) {
+        if (view == null)
+            return;
+
+        if (delay <= 0)  {
+            fadeIn(view);
+            return;
+        }
+
+        view.setVisibility(View.VISIBLE);
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f);
+        alpha.setDuration(300);
+        alpha.setStartDelay(delay);
+        alpha.start();
     }
 }
